@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer Événement - ESPRIT CLUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .sidebar-item {
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-item:hover {
+            background-color: #e8e8e8;
+        }
+
+        .sidebar-item.active {
+            background-color: #e8e8e8;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .form-input {
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.875rem 1rem;
+            width: 100%;
+            font-size: 1rem;
+            color: #374151;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+        
+        .radio-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .radio-item input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header with Logo, Notification, and Profile - Full width -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="flex items-center justify-between px-6 py-3">
+            <div class="flex items-center">
+                <img src="./images/logo.png" alt="Esprit Club Logo" class="h-12">
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative cursor-pointer">
+                    <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                </div>
+                <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="w-10 h-10 rounded-full object-cover">
+            </div>
+        </div>
+    </header>
+
+    <div class="flex pt-16 min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white h-screen fixed left-0 shadow-sm overflow-y-auto">
+            <nav class="p-6 space-y-2">
+                <div class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                    </svg>
+                    <span class="font-medium text-gray-800">Dashboard</span>
+                </div>
+
+                <div class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-700">Liste Évenement</span>
+                </div>
+
+                <div class="sidebar-item active flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-cyan-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                        <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+                    </svg>
+                    <span class="text-gray-700 font-medium">Discussions publiques</span>
+                </div>
+
+                <div class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-700">Chats privés</span>
+                </div>
+
+                <div class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-700">Calendar</span>
+                </div>
+
+                <div class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <span class="text-gray-700">achivements</span>
+                </div>
+
+                <div class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-700">favoris</span>
+                </div>
+
+                <div class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                        <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                    </svg>
+                    <span class="text-gray-700">Polls</span>
+                </div>
+
+                <div class="sidebar-item active flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer">
+                    <svg class="w-5 h-5 text-cyan-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-700 font-medium">déconnexion</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-64 flex-1">
+            <!-- Statistics Content -->
+            <div class="p-8">
+                <!-- Back button -->
+                <div class="mb-6">
+                    <a href="./index.html" class="inline-flex items-center text-gray-600 hover:text-gray-900">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Retour au Dashboard
+                    </a>
+                </div>
+
+                <div class="">
+                    <div class="">
+
+                        <!-- Right Column - Create Event Form -->
+                        <div class="">
+                            <!-- Create Event Header -->
+                            <div class="mb-10">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-6">Ajouter un évènement</h3>
+                                
+                                <!-- Create Event Form -->
+                                <div class="bg-white rounded-xl shadow-lg p-8 mb-10">
+                                    <div class="space-y-8">
+                                        <!-- Nom évènement -->
+                                        <div>
+                                            <div class="text-gray-700 mb-3 font-medium text-lg">Nom évènement</div>
+                                            <input type="text" 
+                                                   placeholder="Nom de l'évènement"
+                                                   class="form-input text-lg">
+                                        </div>
+
+                                        <!-- Description -->
+                                        <div>
+                                            <div class="text-gray-700 mb-3 font-medium text-lg">Description</div>
+                                            <textarea class="form-input h-32 text-lg" placeholder="Description de l'évènement"></textarea>
+                                        </div>
+
+                                        <!-- Date et Lieu -->
+                                        <div class="grid grid-cols-2 gap-8">
+                                            <div>
+                                                <div class="text-gray-700 mb-3 font-medium text-lg">Date</div>
+                                                <input type="date" class="form-input text-lg">
+                                            </div>
+                                            <div>
+                                                <div class="text-gray-700 mb-3 font-medium text-lg">Lieu</div>
+                                                <input type="text" 
+                                                       placeholder="Lieu de l'évènement"
+                                                       class="form-input text-lg">
+                                            </div>
+                                        </div>
+
+                                        <!-- Nombre participants -->
+                                        <div>
+                                            <div class="text-gray-700 mb-3 font-medium text-lg">nombre des participant</div>
+                                            <input type="number" 
+                                                   placeholder="Nombre de participants"
+                                                   class="form-input text-lg">
+                                        </div>
+
+                                        <!-- Type (Radio buttons) -->
+                                        <div>
+                                            <div class="text-gray-700 mb-4 font-medium text-lg">Type</div>
+                                            <div class="space-y-2">
+                                                <div class="radio-item">
+                                                    <input type="radio" name="type" id="education" checked>
+                                                    <label for="education" class="text-gray-700 text-lg">Éducation</label>
+                                                </div>
+                                                <div class="radio-item">
+                                                    <input type="radio" name="type" id="divertissement">
+                                                    <label for="divertissement" class="text-gray-700 text-lg">Divertissement</label>
+                                                </div>
+                                                <div class="radio-item">
+                                                    <input type="radio" name="type" id="affaires">
+                                                    <label for="affaires" class="text-gray-700 text-lg">Affaires</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Club -->
+                                        <div>
+                                            <div class="text-gray-700 mb-3 font-medium text-lg">Club</div>
+                                            <input type="text" 
+                                                   placeholder="Nom du club"
+                                                   class="form-input text-lg">
+                                        </div>
+
+                                        <!-- Boutons -->
+                                        <div class="flex justify-center space-x-8 pt-6">
+                                            <button type="button" 
+                                                    class="px-16 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 font-medium text-lg transition">
+                                                Annuler
+                                            </button>
+                                            <button type="button" 
+                                                    class="px-16 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-lg transition">
+                                                Confirmer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Get event ID from URL if needed
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventId = urlParams.get('id');
+        
+        if (eventId) {
+            console.log(`Modifying event ID: ${eventId}`);
+        }
+
+        // Function to handle sidebar navigation
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Handle checkbox functionality
+        document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                if (this.checked) {
+                    label.classList.add('font-medium');
+                } else {
+                    label.classList.remove('font-medium');
+                }
+            });
+        });
+
+        // Initialize checkboxes that should be checked
+        document.querySelectorAll('input[checked]').forEach(checkbox => {
+            const label = checkbox.nextElementSibling;
+            if (label) {
+                label.classList.add('font-medium');
+            }
+        });
+
+        // Handle cancel button
+        document.querySelector('button.bg-gray-300').addEventListener('click', function() {
+            window.location.href = './index.html';
+        });
+
+        // Handle confirm button
+        document.querySelector('button.bg-blue-600').addEventListener('click', function() {
+            // Add your event creation logic here
+            alert('Évènement créé avec succès!');
+            window.location.href = './index.html';
+        });
+    </script>
+</body>
+</html>
