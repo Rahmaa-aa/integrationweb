@@ -152,6 +152,7 @@ http://127.0.0.1:5173
 | 👨‍💼 **Encadrante** | **Mme Imen El Hakim** | Supervision du projet |
 | 👩‍💻 **Développeuse** | Rahma | Module Participation |
 | 👨‍💻 **Développeur** | Smail | Module Communication |
+| 👨‍💻 **Développeur** | Ala | Module Communication |
 | 👩‍💻 **Développeuse** | Sirine | Module Participation |
 
 </div>
